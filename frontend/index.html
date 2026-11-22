@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">✚</div>
+            <div>
+                <h2>MedCare</h2>
+                <p>Hospital Management</p>
+            </div>
+        </div>
+
+        <p class="nav-heading">MAIN MENU</p>
+
+        <nav class="sidebar-nav">
+            <button class="nav-link active" onclick="openSection('dashboard')">
+                <span>▦</span> Dashboard
+            </button>
+
+            <button class="nav-link" onclick="openSection('patients')">
+                <span>♙</span> Patients
+            </button>
+
+            <button class="nav-link" onclick="openSection('doctors')">
+                <span>⚕</span> Doctors
+            </button>
+
+            <button class="nav-link" onclick="openSection('appointments')">
+                <span>▣</span> Appointments
+            </button>
+
+            <button class="nav-link" onclick="openSection('rooms')">
+                <span>▤</span> Rooms
+            </button>
+
+            <button class="nav-link" onclick="openSection('billing')">
+                <span>₹</span> Billing
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <p>Hospital Administration</p>
+            <small>Management Portal</small>
+        </div>
+    </aside>
+
+    <!-- Main Area -->
+    <div class="main-area">
+
+        <header class="topbar">
+            <div>
+                <h2>Hospital Dashboard</h2>
+                <p>Welcome to your administration portal</p>
+            </div>
+
+            <div class="profile">
+                <div class="profile-icon">A</div>
+                <div>
+                    <strong>Administrator</strong>
+                    <small>Hospital Admin</small>
+                </div>
+            </div>
+        </header>
+
+        <main class="content">
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="page-section">
+
+                <div class="welcome">
+                    <div>
+                        <h1>Welcome to MedCare</h1>
+                        <p>Manage your hospital operations efficiently.</p>
+                    </div>
+                    <span class="welcome-icon">✚</span>
+                </div>
+
+                <div class="section-heading">
+                    <h2>Overview</h2>
+                    <p>Hospital management at a glance</p>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon mint">♙</div>
+                        <p>Total Patients</p>
+                        <h2>Patient Records</h2>
+                        <small>Patient management</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon blue">⚕</div>
+                        <p>Total Doctors</p>
+                        <h2>Doctor Records</h2>
+                        <small>Doctor management</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon purple">▣</div>
+                        <p>Appointments</p>
+                        <h2>Appointments</h2>
+                        <small>Appointment management</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">▤</div>
+                        <p>Room Management</p>
+                        <h2>Hospital Rooms</h2>
+                        <small>Room availability</small>
+                    </div>
+
+                </div>
+
+                <div class="section-heading">
+                    <h2>Management Modules</h2>
+                    <p>Select a module to continue</p>
+                </div>
+
+                <div class="module-grid">
+
+                    <div class="module-card">
+                        <h3>Patient Management</h3>
+                        <p>Register and manage patient records.</p>
+                        <button onclick="openSection('patients')">Open Module →</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Doctor Management</h3>
+                        <p>Manage doctor information.</p>
+                        <button onclick="openSection('doctors')">Open Module →</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Appointment Management</h3>
+                        <p>Schedule and manage appointments.</p>
+                        <button onclick="openSection('appointments')">Open Module →</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Room Management</h3>
+                        <p>Manage room allocation and availability.</p>
+                        <button onclick="openSection('rooms')">Open Module →</button>
+                    </div>
+
+                    <div class="module-card">
+                        <h3>Billing Management</h3>
+                        <p>Generate and manage hospital bills.</p>
+                        <button onclick="openSection('billing')">Open Module →</button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Patient Management -->
+            
+<section id="patients" class="page-section" hidden>
+
+    <div class="section-heading">
+        <h1>Patient Management</h1>
+        <p>Register, search and manage hospital patients.</p>
+    </div>
+
+    <!-- Registration and update form -->
+    <div class="module-card patient-form-card">
+
+        <h3 id="patientFormTitle">Register New Patient</h3>
+
+        <form id="patientForm">
+
+            <div class="patient-form-grid">
+
+                <div>
+                    <label for="patientID">Patient ID</label>
+                    <input type="number" id="patientID"
+                           placeholder="Enter Patient ID"
+                           min="1" required>
+                </div>
+
+                <div>
+                    <label for="patientName">Patient Name</label>
+                    <input type="text" id="patientName"
+                           maxlength="49"
+                           placeholder="Enter full name" required>
+                </div>
+
+                <div>
+                    <label for="patientAge">Age</label>
+                    <input type="number" id="patientAge"
+                           min="1" max="120"
+                           placeholder="Enter age" required>
+                </div>
+
+                <div>
+                    <label for="patientGender">Gender</label>
+                    <select id="patientGender" required>
+                        <option value="">Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="patientDiagnosis">Diagnosis</label>
+                    <input type="text" id="patientDiagnosis"
+                           maxlength="99"
+                           placeholder="Enter diagnosis" required>
+                </div>
+
+                <div>
+                    <label for="patientPhone">Phone Number</label>
+                    <input type="tel" id="patientPhone"
+                           maxlength="15"
+                           placeholder="Enter phone number" required>
+                </div>
+
+            </div>
+
+            <div class="patient-form-actions">
+                <button type="submit" id="patientSubmitButton">
+                    Register Patient
+                </button>
+
+                <button type="button" id="cancelPatientEdit"
+                        class="secondary-button" hidden>
+                    Cancel Update
+                </button>
+            </div>
+
+            <p id="patientMessage" role="status"></p>
+
+        </form>
+    </div>
+
+    <!-- Patient records -->
+    <div class="module-card patient-table-card">
+
+        <div class="patient-table-heading">
+            <div>
+                <h3>Patient Records</h3>
+                <p>View and manage registered patients.</p>
+            </div>
+
+            <button type="button" onclick="loadPatients()">
+                Refresh Records
+            </button>
+        </div>
+
+        <div class="patient-search">
+            <input type="number" id="searchPatientID"
+                   placeholder="Search by Patient ID">
+
+            <button type="button" onclick="searchPatientRecord()">
+                Search
+            </button>
+
+            <button type="button"
+                    class="secondary-button"
+                    onclick="clearPatientSearch()">
+                Show All
+            </button>
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="patient-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Diagnosis</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="patientTableBody">
+                    <tr>
+                        <td colspan="7">Click Refresh Records to load patients.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+            <!-- Other Management Sections -->
+            
+<section id="doctors" class="page-section" hidden>
+
+    <div class="section-heading">
+        <h1>Doctor Management</h1>
+        <p>Register, search and manage hospital doctors.</p>
+    </div>
+
+    <div class="module-card doctor-form-card">
+
+        <h3 id="doctorFormTitle">Register New Doctor</h3>
+
+        <form id="doctorForm">
+
+            <div class="doctor-form-grid">
+
+                <div>
+                    <label for="doctorID">Doctor ID</label>
+                    <input type="number" id="doctorID"
+                           min="1" placeholder="Enter Doctor ID" required>
+                </div>
+
+                <div>
+                    <label for="doctorName">Doctor Name</label>
+                    <input type="text" id="doctorName"
+                           maxlength="49"
+                           placeholder="Enter doctor name" required>
+                </div>
+
+                <div>
+                    <label for="doctorSpecialization">Specialization</label>
+                    <input type="text" id="doctorSpecialization"
+                           maxlength="49"
+                           placeholder="Enter specialization" required>
+                </div>
+
+                <div>
+                    <label for="doctorExperience">Experience (Years)</label>
+                    <input type="number" id="doctorExperience"
+                           min="0" max="80"
+                           placeholder="Enter years of experience" required>
+                </div>
+
+                <div>
+                    <label for="doctorPhone">Phone Number</label>
+                    <input type="tel" id="doctorPhone"
+                           maxlength="14"
+                           placeholder="Enter phone number" required>
+                </div>
+
+            </div>
+
+            <div class="doctor-form-actions">
+
+                <button type="submit" id="doctorSubmitButton">
+                    Register Doctor
+                </button>
+
+                <button type="button" id="cancelDoctorEdit"
+                        class="secondary-button" hidden>
+                    Cancel Update
+                </button>
+
+            </div>
+
+            <p id="doctorMessage" role="status"></p>
+
+        </form>
+
+    </div>
+
+    <div class="module-card doctor-table-card">
+
+        <div class="doctor-table-heading">
+            <div>
+                <h3>Doctor Records</h3>
+                <p>View and manage registered doctors.</p>
+            </div>
+
+            <button type="button" onclick="loadDoctors()">
+                Refresh Records
+            </button>
+        </div>
+
+        <div class="doctor-search">
+
+            <input type="number" id="searchDoctorID"
+                   placeholder="Search by Doctor ID">
+
+            <button type="button" onclick="searchDoctorRecord()">
+                Search
+            </button>
+
+            <button type="button"
+                    class="secondary-button"
+                    onclick="clearDoctorSearch()">
+                Show All
+            </button>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="doctor-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Experience</th>
+                        <th>Phone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="doctorTableBody">
+                    <tr>
+                        <td colspan="6">
+                            Click Refresh Records to load doctors.
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================
+     APPOINTMENT MANAGEMENT
+===================================== -->
+
+
+<section id="appointments" class="page-section" hidden>
+
+    <div class="section-heading">
+        <h1>Appointment Management</h1>
+        <p>Schedule, search and manage patient appointments.</p>
+    </div>
+
+    <div class="module-card patient-form-card">
+
+        <h3 id="appointmentFormTitle">Schedule New Appointment</h3>
+
+        <form id="appointmentForm">
+
+            <div class="patient-form-grid">
+
+                <div>
+                    <label for="appointmentID">Appointment ID</label>
+                    <input type="number" id="appointmentID"
+                           placeholder="Enter Appointment ID"
+                           min="1" required>
+                </div>
+
+                <div>
+                    <label for="appointmentPatientID">Patient ID</label>
+                    <input type="number" id="appointmentPatientID"
+                           placeholder="Enter Patient ID"
+                           min="1" required>
+                </div>
+
+                <div>
+                    <label for="appointmentDoctorID">Doctor ID</label>
+                    <input type="number" id="appointmentDoctorID"
+                           placeholder="Enter Doctor ID"
+                           min="1" required>
+                </div>
+
+                <div>
+                    <label for="appointmentDate">Appointment Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+
+                <div>
+                    <label for="appointmentTime">Appointment Time</label>
+                    <input type="time" id="appointmentTime" required>
+                </div>
+
+                <div>
+                    <label for="appointmentReason">Reason</label>
+                    <input type="text" id="appointmentReason"
+                           maxlength="99"
+                           placeholder="Enter appointment reason" required>
+                </div>
+
+            </div>
+
+            <div class="patient-form-actions">
+
+                <button type="submit" id="appointmentSubmitButton">
+                    Schedule Appointment
+                </button>
+
+                <button type="button" id="cancelAppointmentEdit"
+                        class="secondary-button" hidden
+                        onclick="resetAppointmentForm()">
+                    Cancel Update
+                </button>
+
+            </div>
+
+            <p id="appointmentMessage" role="status"></p>
+
+        </form>
+    </div>
+
+    <div class="module-card patient-table-card">
+
+        <div class="patient-table-heading">
+            <div>
+                <h3>Appointment Records</h3>
+                <p>View and manage scheduled appointments.</p>
+            </div>
+
+            <button type="button" onclick="loadAppointments()">
+                Refresh Records
+            </button>
+        </div>
+
+        <div class="patient-search">
+
+            <input type="number" id="searchAppointmentID"
+                   placeholder="Search by Appointment ID">
+
+            <button type="button" onclick="searchAppointment()">
+                Search
+            </button>
+
+            <button type="button" class="secondary-button"
+                    onclick="loadAppointments()">
+                Show All
+            </button>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="patient-table">
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Patient ID</th>
+                        <th>Doctor ID</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Reason</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="appointmentTableBody">
+                    <tr>
+                        <td colspan="8">Click Refresh Records to load appointments.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     ROOM MANAGEMENT
+===================================== -->
+
+
+<section id="rooms" class="page-section" hidden>
+
+    <div class="section-heading">
+        <h1>Room Management</h1>
+        <p>Register, search and manage hospital rooms.</p>
+    </div>
+
+    <!-- Room registration and update form -->
+    <div class="module-card patient-form-card">
+
+        <h3 id="roomFormTitle">Register New Room</h3>
+
+        <form id="roomForm">
+
+            <div class="patient-form-grid">
+
+                <div>
+                    <label for="roomID">Room ID</label>
+                    <input type="number" id="roomID"
+                           placeholder="Enter Room ID"
+                           min="1" required>
+                </div>
+
+                <div>
+                    <label for="roomNumber">Room Number</label>
+                    <input type="number" id="roomNumber"
+                           placeholder="Enter Room Number"
+                           min="1" required>
+                </div>
+
+                <div>
+                    <label for="roomType">Room Type</label>
+                    <select id="roomType" required>
+                        <option value="">Select Room Type</option>
+                        <option value="General">General</option>
+                        <option value="Private">Private</option>
+                        <option value="ICU">ICU</option>
+                        <option value="Emergency">Emergency</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="roomCharges">Charges Per Day</label>
+                    <input type="number" id="roomCharges"
+                           min="0" step="0.01"
+                           placeholder="Enter daily charges" required>
+                </div>
+
+            </div>
+
+            <div class="patient-form-actions">
+
+                <button type="submit" id="roomSubmitButton">
+                    Register Room
+                </button>
+
+                <button type="button" id="cancelRoomEdit"
+                        class="secondary-button" hidden
+                        onclick="resetRoomForm()">
+                    Cancel Update
+                </button>
+
+            </div>
+
+            <p id="roomMessage" role="status"></p>
+
+        </form>
+
+    </div>
+
+    <!-- Room allocation -->
+    <div class="module-card patient-form-card">
+
+        <h3>Room Allocation</h3>
+
+        <div class="patient-form-grid">
+
+            <div>
+                <label for="allocateRoomID">Room ID</label>
+                <input type="number" id="allocateRoomID"
+                       min="1" placeholder="Enter Room ID">
+            </div>
+
+            <div>
+                <label for="allocatePatientID">Patient ID</label>
+                <input type="number" id="allocatePatientID"
+                       min="1" placeholder="Enter Patient ID">
+            </div>
+
+        </div>
+
+        <div class="patient-form-actions">
+            <button type="button" onclick="allocateRoom()">
+                Allocate Room
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Room records -->
+    <div class="module-card patient-table-card">
+
+        <div class="patient-table-heading">
+            <div>
+                <h3>Room Records</h3>
+                <p>View and manage hospital room availability.</p>
+            </div>
+
+            <button type="button" onclick="loadRooms()">
+                Refresh Records
+            </button>
+        </div>
+
+        <div class="patient-search">
+
+            <input type="number" id="searchRoomID"
+                   placeholder="Search by Room ID">
+
+            <button type="button" onclick="searchRoom()">
+                Search
+            </button>
+
+            <button type="button" class="secondary-button"
+                    onclick="loadRooms()">
+                Show All
+            </button>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="patient-table">
+
+                <thead>
+                    <tr>
+                        <th>Room ID</th>
+                        <th>Room Number</th>
+                        <th>Room Type</th>
+                        <th>Daily Charges</th>
+                        <th>Availability</th>
+                        <th>Patient ID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="roomTableBody">
+                    <tr>
+                        <td colspan="7">Click Refresh Records to load rooms.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================
+     BILLING MANAGEMENT
+===================================== -->
+
+
+<section id="billing" class="page-section" hidden>
+
+    <div class="section-heading">
+        <h1>Billing Management</h1>
+        <p>Generate, search and manage patient bills.</p>
+    </div>
+
+    <!-- Bill generation form -->
+    <div class="module-card patient-form-card">
+
+        <h3>Generate New Bill</h3>
+
+        <form id="billForm">
+
+            <div class="patient-form-grid">
+
+                <div>
+                    <label for="billID">Bill ID</label>
+                    <input type="number" id="billID"
+                           min="1"
+                           placeholder="Enter Bill ID" required>
+                </div>
+
+                <div>
+                    <label for="billPatientID">Patient ID</label>
+                    <input type="number" id="billPatientID"
+                           min="1"
+                           placeholder="Enter Patient ID" required>
+                </div>
+
+                <div>
+                    <label for="billRoomNumber">Room Number</label>
+                    <input type="number" id="billRoomNumber"
+                           min="1"
+                           placeholder="Enter Room Number" required>
+                </div>
+
+                <div>
+                    <label for="billDays">Number of Days</label>
+                    <input type="number" id="billDays"
+                           min="1"
+                           placeholder="Enter number of days" required>
+                </div>
+
+                <div>
+                    <label for="billChargesPerDay">Charges Per Day</label>
+                    <input type="number" id="billChargesPerDay"
+                           min="0" step="0.01"
+                           placeholder="Enter daily charges" required>
+                </div>
+
+                <div>
+                    <label for="billOtherCharges">Other Charges</label>
+                    <input type="number" id="billOtherCharges"
+                           min="0" step="0.01"
+                           value="0" required>
+                </div>
+
+            </div>
+
+            <div class="patient-form-actions">
+
+                <button type="submit" id="billSubmitButton">
+                    Generate Bill
+                </button>
+
+            </div>
+
+            <p id="billMessage" role="status"></p>
+
+        </form>
+
+    </div>
+
+    <!-- Billing records -->
+    <div class="module-card patient-table-card">
+
+        <div class="patient-table-heading">
+            <div>
+                <h3>Billing Records</h3>
+                <p>View bills and manage payment status.</p>
+            </div>
+
+            <button type="button" onclick="loadBills()">
+                Refresh Records
+            </button>
+        </div>
+
+        <div class="patient-search">
+
+            <input type="number" id="searchBillID"
+                   placeholder="Search by Bill ID">
+
+            <button type="button" onclick="searchBill()">
+                Search
+            </button>
+
+            <button type="button" class="secondary-button"
+                    onclick="loadBills()">
+                Show All
+            </button>
+
+        </div>
+
+        <div class="table-responsive">
+
+            <table class="patient-table">
+
+                <thead>
+                    <tr>
+                        <th>Bill ID</th>
+                        <th>Patient ID</th>
+                        <th>Room Number</th>
+                        <th>Days</th>
+                        <th>Daily Charges</th>
+                        <th>Other Charges</th>
+                        <th>Total Amount</th>
+                        <th>Payment Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="billTableBody">
+                    <tr>
+                        <td colspan="9">Click Refresh Records to load bills.</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+        </main>
+
+        <footer>
+            Hospital Management System | MedCare
+        </footer>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
