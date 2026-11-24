@@ -754,11 +754,7 @@ footer {
     .doctor-search {
         flex-direction: column;
     }
-
-    .patient-search input,
-    .doctor-search input {
-        max-width: 100%;
-    }
+}
 
     footer {
         padding: 20px 12px;
