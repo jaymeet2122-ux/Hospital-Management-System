@@ -6,12 +6,13 @@
     --navy-light: #193B59;
     --teal: #087E8B;
     --teal-dark: #066570;
-    --background: #F4F7FA;
+    --background: #F3F7FB;
     --white: #FFFFFF;
     --text: #243B53;
     --muted: #8293A5;
     --border: #E5ECF2;
-    --shadow: 0 5px 20px rgba(16,42,67,0.05);
+    --shadow: 0 5px 22px rgba(16,42,67,0.055);
+    --mint: #DFF5F2;
 }
 
 * {
@@ -24,73 +25,84 @@ body {
     font-family: 'Inter', Arial, sans-serif;
     background: var(--background);
     color: var(--text);
+    line-height: 1.55;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
 }
 
 button {
-    font-family: inherit;
     cursor: pointer;
+    transition: 0.2s ease;
 }
 
-/* Overall layout */
+/* MAIN LAYOUT */
 
 .app-layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* Sidebar */
+/* SIDEBAR */
 
 .sidebar {
     width: 255px;
-    background: var(--navy);
+    min-height: 100vh;
+    background: linear-gradient(180deg, #102A43 0%, #153B58 100%);
     color: white;
-    padding: 28px 18px;
+    padding: 27px 17px;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    position: relative;
 }
 
 .brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 0 8px 35px;
+    padding: 0 9px 27px;
     border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .brand-icon {
-    width: 43px;
-    height: 43px;
-    border-radius: 12px;
-    background: var(--teal);
+    width: 45px;
+    height: 45px;
+    border-radius: 13px;
+    background: linear-gradient(135deg, #0DABB0, #087E8B);
     display: grid;
     place-items: center;
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 800;
+    box-shadow: 0 5px 14px rgba(8,126,139,0.3);
 }
 
 .brand h2 {
     font-size: 19px;
-    margin-bottom: 4px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 2px;
 }
 
 .brand p {
     color: #B7C9D8;
     font-size: 10px;
+    letter-spacing: 1px;
 }
 
 .nav-heading {
     font-size: 10px;
-    font-weight: 700;
-    color: #91A8BA;
+    font-weight: 800;
+    color: #8EA7BC;
     letter-spacing: 1.5px;
-    margin: 30px 10px 15px;
+    margin: 30px 10px 14px;
 }
 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 7px;
 }
 
 .nav-link {
@@ -98,26 +110,33 @@ button {
     align-items: center;
     gap: 13px;
     width: 100%;
-    padding: 14px 15px;
+    padding: 13px 15px;
     background: transparent;
-    color: #D3DFE9;
+    color: #C6D5E1;
     border: none;
-    border-radius: 9px;
+    border-radius: 10px;
     text-align: left;
     font-size: 13px;
-    transition: 0.2s;
+    font-weight: 500;
+    transition: 0.2s ease;
 }
 
 .nav-link span {
     font-size: 19px;
-    width: 22px;
+    width: 23px;
     text-align: center;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    background: var(--teal);
+.nav-link:hover {
+    background: rgba(255,255,255,0.09);
     color: white;
+    transform: translateX(3px);
+}
+
+.nav-link.active {
+    background: linear-gradient(100deg, #087E8B, #0A98A0);
+    color: white;
+    box-shadow: 0 5px 15px rgba(8,126,139,0.25);
 }
 
 .sidebar-bottom {
@@ -128,38 +147,42 @@ button {
 
 .sidebar-bottom p {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .sidebar-bottom small {
     display: block;
     color: #91A8BA;
-    margin-top: 6px;
+    margin-top: 5px;
     font-size: 10px;
 }
 
-/* Main area */
+/* MAIN AREA */
 
 .main-area {
     flex: 1;
     min-width: 0;
 }
 
-/* Top bar */
+/* TOPBAR */
 
 .topbar {
     background: white;
-    padding: 22px 35px;
+    padding: 19px 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .topbar h2 {
     font-size: 19px;
     color: var(--navy);
-    margin-bottom: 5px;
+    font-weight: 700;
+    margin-bottom: 3px;
 }
 
 .topbar p {
@@ -174,51 +197,70 @@ button {
 }
 
 .profile-icon {
-    width: 39px;
-    height: 39px;
-    background: var(--mint, #DFF5F2);
+    width: 42px;
+    height: 42px;
+    background: var(--mint);
     color: var(--teal);
     border-radius: 50%;
     display: grid;
     place-items: center;
-    font-weight: 700;
+    font-weight: 800;
+    border: 2px solid #C5EDE8;
 }
 
 .profile strong {
     display: block;
     font-size: 12px;
+    color: var(--navy);
 }
 
 .profile small {
     display: block;
     font-size: 10px;
     color: var(--muted);
-    margin-top: 4px;
+    margin-top: 3px;
 }
 
-/* Content */
+/* CONTENT */
 
 .content {
     padding: 30px 35px;
-    max-width: 1500px;
+    max-width: 1550px;
     margin: auto;
 }
 
+/* WELCOME BANNER */
+
 .welcome {
-    background: linear-gradient(110deg, #102A43, #087E8B);
-    padding: 35px;
-    border-radius: 15px;
+    background: linear-gradient(110deg, #102A43 0%, #14516B 58%, #087E8B 100%);
+    padding: 37px;
+    border-radius: 17px;
     color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 35px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 10px 28px rgba(16,42,67,0.13);
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome::after {
+    content: "";
+    position: absolute;
+    width: 230px;
+    height: 230px;
+    border: 35px solid rgba(255,255,255,0.055);
+    border-radius: 50%;
+    right: 70px;
+    top: -100px;
 }
 
 .welcome h1 {
-    font-size: 25px;
+    font-size: 27px;
+    font-weight: 800;
     margin-bottom: 10px;
+    letter-spacing: -0.6px;
 }
 
 .welcome p {
@@ -227,21 +269,24 @@ button {
 }
 
 .welcome-icon {
-    font-size: 55px;
-    opacity: 0.8;
+    font-size: 60px;
+    opacity: 0.9;
+    z-index: 1;
 }
 
-/* Section headings */
+/* SECTION HEADINGS */
 
 .section-heading {
-    margin-bottom: 20px;
+    margin-bottom: 23px;
 }
 
 .section-heading h1,
 .section-heading h2 {
     color: var(--navy);
-    font-size: 20px;
-    margin-bottom: 7px;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.4px;
+    margin-bottom: 6px;
 }
 
 .section-heading p {
@@ -249,30 +294,36 @@ button {
     color: var(--muted);
 }
 
-/* Statistics */
+/* STATISTICS */
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 19px;
     margin-bottom: 38px;
 }
 
 .stat-card {
     background: white;
-    padding: 20px;
+    padding: 22px;
     border: 1px solid var(--border);
-    border-radius: 13px;
+    border-radius: 15px;
     box-shadow: var(--shadow);
+    transition: 0.25s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(16,42,67,0.09);
 }
 
 .stat-icon {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
     display: grid;
     place-items: center;
-    font-size: 20px;
+    font-size: 21px;
     margin-bottom: 17px;
 }
 
@@ -299,13 +350,14 @@ button {
 .stat-card p {
     color: var(--muted);
     font-size: 11px;
-    margin-bottom: 9px;
+    margin-bottom: 8px;
 }
 
 .stat-card h2 {
-    font-size: 16px;
+    font-size: 23px;
     color: var(--navy);
-    margin-bottom: 7px;
+    font-weight: 800;
+    margin-bottom: 6px;
 }
 
 .stat-card small {
@@ -313,61 +365,86 @@ button {
     font-size: 10px;
 }
 
-/* Module cards */
+/* MODULE CARDS */
 
 .module-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
 }
 
 .module-card {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 13px;
-    padding: 24px;
+    border-radius: 15px;
+    padding: 25px;
     box-shadow: var(--shadow);
-    transition: 0.25s;
+    transition: 0.25s ease;
 }
 
 .module-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(16,42,67,0.09);
+    box-shadow: 0 12px 28px rgba(16,42,67,0.09);
+    border-color: #C8E7E6;
 }
 
 .module-card h3 {
     color: var(--navy);
     font-size: 15px;
+    font-weight: 700;
     margin-bottom: 10px;
 }
 
 .module-card p {
     color: var(--muted);
     font-size: 12px;
-    line-height: 1.7;
+    line-height: 1.8;
     min-height: 42px;
     margin-bottom: 20px;
 }
 
-/* Buttons */
+/* BUTTONS */
 
-.module-card button {
+.module-card button,
+.patient-form-actions button,
+.patient-search button,
+.doctor-form-actions button,
+.doctor-search button {
     background: var(--teal);
     color: white;
     border: none;
-    border-radius: 7px;
-    padding: 11px 16px;
+    border-radius: 8px;
+    padding: 11px 17px;
     font-size: 11px;
-    font-weight: 600;
-    transition: 0.2s;
+    font-weight: 700;
 }
 
-.module-card button:hover {
+.module-card button:hover,
+.patient-form-actions button:hover,
+.patient-search button:hover,
+.doctor-form-actions button:hover,
+.doctor-search button:hover {
     background: var(--teal-dark);
     transform: translateY(-2px);
 }
 
-/* Management pages */
+.secondary-button {
+    background: #8293A5 !important;
+}
+
+.secondary-button:hover {
+    background: #64798E !important;
+}
+
+.delete-button {
+    background: #D9534F !important;
+}
+
+.delete-button:hover {
+    background: #B83B37 !important;
+}
+
+/* PAGE SECTIONS */
 
 .page-section {
     animation: appear 0.25s ease;
@@ -388,7 +465,7 @@ button {
     }
 }
 
-/* Footer */
+/* FOOTER */
 
 footer {
     padding: 22px 35px;
@@ -400,15 +477,205 @@ footer {
     margin-top: 30px;
 }
 
-/* Responsive */
+/* COMMON MANAGEMENT CARDS */
 
-@media (max-width: 1000px) {
+.patient-form-card,
+.patient-table-card,
+.doctor-form-card,
+.doctor-table-card {
+    margin-bottom: 25px;
+}
+
+.patient-form-card,
+.patient-table-card,
+.doctor-form-card,
+.doctor-table-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.patient-form-card h3,
+.patient-table-card h3,
+.doctor-form-card h3,
+.doctor-table-card h3 {
+    margin-bottom: 20px;
+    color: var(--navy);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+/* PATIENT FORMS */
+
+.patient-form-grid,
+.doctor-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 19px;
+}
+
+.patient-form-grid label,
+.doctor-form-grid label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.patient-form-grid input,
+.patient-form-grid select,
+.doctor-form-grid input,
+.doctor-search input,
+.patient-search input,
+.module-card input,
+.module-card select,
+.module-card textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--text);
+    background: #FBFCFE;
+    transition: 0.2s ease;
+}
+
+.patient-form-grid input:focus,
+.patient-form-grid select:focus,
+.doctor-form-grid input:focus,
+.doctor-search input:focus,
+.patient-search input:focus,
+.module-card input:focus,
+.module-card select:focus,
+.module-card textarea:focus {
+    outline: none;
+    border-color: var(--teal);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(8,126,139,0.09);
+}
+
+.patient-form-actions,
+.doctor-form-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+}
+
+/* TABLE HEADINGS */
+
+.patient-table-heading,
+.doctor-table-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.patient-table-heading p,
+.doctor-table-heading p {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.patient-search,
+.doctor-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.patient-search input,
+.doctor-search input {
+    max-width: 280px;
+}
+
+/* TABLES */
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.patient-table,
+.doctor-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+    background: white;
+}
+
+.patient-table th,
+.patient-table td,
+.doctor-table th,
+.doctor-table td {
+    padding: 14px 13px;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    font-size: 12px;
+}
+
+.patient-table th,
+.doctor-table th {
+    background: #F2F7FA;
+    color: var(--navy);
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+.patient-table tr:hover td,
+.doctor-table tr:hover td {
+    background: #F8FBFD;
+}
+
+.patient-table td button,
+.doctor-table td button {
+    padding: 8px 12px;
+    margin: 3px;
+    font-size: 11px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    background: var(--teal);
+}
+
+.patient-table td .delete-button,
+.doctor-table td .delete-button {
+    background: #D9534F;
+}
+
+#patientMessage,
+#doctorMessage {
+    margin-top: 15px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+    .sidebar {
+        width: 225px;
+    }
+
+    .content {
+        padding: 25px;
+    }
+
     .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .module-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
 
@@ -419,19 +686,29 @@ footer {
 
     .sidebar {
         width: 100%;
+        min-height: auto;
+        padding: 17px;
+    }
+
+    .brand {
+        padding-bottom: 17px;
+    }
+
+    .nav-heading {
+        margin-top: 18px;
+    }
+
+    .sidebar-nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .sidebar-bottom {
         display: none;
     }
 
-    .sidebar-nav {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-    }
-
     .topbar {
-        padding: 18px;
+        padding: 15px 18px;
     }
 
     .content {
@@ -450,263 +727,40 @@ footer {
     .welcome h1 {
         font-size: 21px;
     }
-}
 
-/* =====================================
-   PATIENT MANAGEMENT
-===================================== */
-
-.patient-form-card,
-.patient-table-card {
-    margin-bottom: 25px;
-}
-
-.patient-form-card h3,
-.patient-table-card h3 {
-    margin-bottom: 20px;
-    color: #102A43;
-}
-
-.patient-form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.patient-form-grid label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 600;
-    color: #243B53;
-}
-
-.patient-form-grid input,
-.patient-form-grid select,
-.patient-search input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #E5ECF2;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-.patient-form-grid input:focus,
-.patient-form-grid select:focus,
-.patient-search input:focus {
-    outline: none;
-    border-color: #087E8B;
-}
-
-.patient-form-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 22px;
-}
-
-.secondary-button {
-    background: #8293A5 !important;
-}
-
-.patient-table-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.patient-table-heading p {
-    color: #8293A5;
-    font-size: 13px;
-}
-
-.patient-search {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.patient-search input {
-    max-width: 260px;
-}
-
-.table-responsive {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.patient-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 750px;
-}
-
-.patient-table th,
-.patient-table td {
-    padding: 13px 12px;
-    border-bottom: 1px solid #E5ECF2;
-    text-align: left;
-    font-size: 13px;
-}
-
-.patient-table th {
-    background: #F4F7FA;
-    color: #102A43;
-}
-
-.patient-table td button {
-    padding: 8px 12px;
-    margin: 3px;
-    font-size: 12px;
-}
-
-.patient-table .delete-button {
-    background: #C0392B;
-}
-
-#patientMessage {
-    margin-top: 15px;
-    font-weight: 600;
-}
-
-@media (max-width: 700px) {
-
-    .patient-form-grid {
-        grid-template-columns: 1fr;
+    .welcome-icon {
+        font-size: 40px;
     }
 
-    .patient-search {
-        flex-wrap: wrap;
-    }
-
-    .patient-table-heading {
-        align-items: flex-start;
-        flex-direction: column;
-    }
-}
-
-/* =====================================
-   DOCTOR MANAGEMENT
-===================================== */
-
-.doctor-form-card,
-.doctor-table-card {
-    margin-bottom: 25px;
-}
-
-.doctor-form-card h3,
-.doctor-table-card h3 {
-    margin-bottom: 20px;
-    color: #102A43;
-}
-
-.doctor-form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.doctor-form-grid label {
-    display: block;
-    margin-bottom: 7px;
-    font-weight: 600;
-    color: #243B53;
-}
-
-.doctor-form-grid input,
-.doctor-search input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #E5ECF2;
-    border-radius: 8px;
-    font-family: inherit;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-.doctor-form-grid input:focus,
-.doctor-search input:focus {
-    outline: none;
-    border-color: #087E8B;
-}
-
-.doctor-form-actions {
-    display: flex;
-    gap: 12px;
-    margin-top: 22px;
-}
-
-.doctor-table-heading {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
-}
-
-.doctor-table-heading p {
-    color: #8293A5;
-    font-size: 13px;
-}
-
-.doctor-search {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.doctor-search input {
-    max-width: 260px;
-}
-
-.doctor-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 700px;
-}
-
-.doctor-table th,
-.doctor-table td {
-    padding: 13px 12px;
-    border-bottom: 1px solid #E5ECF2;
-    text-align: left;
-    font-size: 13px;
-}
-
-.doctor-table th {
-    background: #F4F7FA;
-    color: #102A43;
-}
-
-.doctor-table td button {
-    padding: 8px 12px;
-    margin: 3px;
-    font-size: 12px;
-}
-
-.doctor-table .delete-button {
-    background: #C0392B;
-}
-
-#doctorMessage {
-    margin-top: 15px;
-    font-weight: 600;
-}
-
-@media (max-width: 700px) {
-
+    .patient-form-grid,
     .doctor-form-grid {
         grid-template-columns: 1fr;
     }
 
-    .doctor-search {
-        flex-wrap: wrap;
-    }
-
+    .patient-table-heading,
     .doctor-table-heading {
         align-items: flex-start;
         flex-direction: column;
+    }
+
+    .patient-form-card,
+    .patient-table-card,
+    .doctor-form-card,
+    .doctor-table-card {
+        padding: 17px;
+    }
+
+    .patient-search,
+    .doctor-search {
+        flex-direction: column;
+    }
+
+    .patient-search input,
+    .doctor-search input {
+        max-width: 100%;
+    }
+
+    footer {
+        padding: 20px 12px;
     }
 }
